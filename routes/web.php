@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+// call controller name
+use App\Http\Controllers\ContactController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +19,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/home', function () {
+    echo "Homepage!";
+});
+
+Route::get('/about', function () {
+    return view ('about');
+})->middleware('check');
+
+//using controller
+Route::get('/contact', [ContactController::class, 'index']);
