@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 // call controller name
 use App\Http\Controllers\ContactController;
+// call models
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +32,11 @@ Route::get('/about', function () {
 
 //using controller
 Route::get('/contact', [ContactController::class, 'index'])->name('con');
+
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+
+    // using user models
+    $users = User::all();
+    return view('dashboard', compact('users'));
 })->name('dashboard');
