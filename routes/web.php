@@ -1,9 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 // call controller name
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CategoryController;
 // call models
 use App\Models\User;
 
@@ -33,10 +35,17 @@ Route::get('/about', function () {
 //using controller
 Route::get('/contact', [ContactController::class, 'index'])->name('con');
 
+//category controller
+Route::get('/category/all', [CategoryController::class, 'AllCat'])->name('all.category');
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
-    // using user models
-    $users = User::all();
+    // using user models eloquent orm
+    // $users = User::all();
+
+    //using query builder
+    $users = DB::table('users')->get();
+
     return view('dashboard', compact('users'));
 })->name('dashboard');

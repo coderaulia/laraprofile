@@ -13,21 +13,18 @@
                <thead>
                   <tr>
                      <th scope="col">No</th>
-                     <th scope="col">Name</th>
+                     <th scope="col">Category Name</th>
                      <th scope="col">Email</th>
                      <th scope="col">Created at</th>
                   </tr>
                </thead>
                <tbody>
-                  @php($no = 1)
-                  @foreach($users as $user)
                   <tr>
-                     <th scope="row">{{ $no++ }}</th>
-                     <td>{{ $user->name }}</td>
-                     <td>{{ $user->email }}</td>
-                     <td>{{ Carbon\Carbon::parse($user->created_at)->diffForHumans() }}</td>
+                     <th scope="row"></th>
+                     <td></td>
+                     <td></td>
+                     <td></td>
                   </tr>
-                  @endforeach
                </tbody>
             </table>
          </div>
