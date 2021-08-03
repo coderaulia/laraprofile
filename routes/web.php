@@ -9,6 +9,9 @@ use App\Http\Controllers\CategoryController;
 // call models
 use App\Models\User;
 
+use Illuminate\Support\Carbon;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,6 +42,10 @@ Route::get('/contact', [ContactController::class, 'index'])->name('con');
 Route::get('/category/all', [CategoryController::class, 'AllCat'])->name('all.category');
 //Add category
 Route::post('/category/add', [CategoryController::class, 'AddCat'])->name('store.category');
+//edit category
+Route::get('/category/edit/{id}', [CategoryController::class, 'Edit']);
+//update category
+Route::post('/category/update/{id}', [CategoryController::class, 'Update']);
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use Auth;
-use Illuminate\Support\Carbon;
 
 class CategoryController extends Controller
 {
@@ -53,6 +53,31 @@ class CategoryController extends Controller
         // return with message
         return Redirect()->back()->with('success', 'Category inserted successfully!');
 
+    }
+
+    public function Edit($id){
+        $categories =  Category::find($id);
+        
+        // using query builder
+        // $categories = DB::table('categories')->where('id', $id)->first();
+
+        return view('admin.category.edit', compact('categories'));
+    }
+
+    public function Update(Request $request, $id){
+        $update = Category::find($id)->update([
+            'category_name' => $request->category_name,
+            'user_id' => Auth::user()->id
+        ]);
+
+        //using query builder
+        // $data = array();
+        // $data['category_name'] = $request->category_name;
+        // $data['user_id'] = Auth::user()->id;
+        // DB::table('categories')->where('id', $id)->update($data);
+
+        return Redirect()->route('all.category')->with('success', 'Category updated successfully!');
 
     }
+
 }
