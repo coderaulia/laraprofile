@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use Auth;
 use Illuminate\Support\Carbon;
@@ -10,7 +11,12 @@ use Illuminate\Support\Carbon;
 class CategoryController extends Controller
 {
     public function AllCat(){
-        return view('admin.category.index');
+        $categories = Category::latest()->get();
+
+        //using query builder
+        // $categories = DB::table('categories')->latest()->get();
+
+        return view('admin.category.index', compact('categories'));
     }
 
     public function AddCat(Request $request){
@@ -33,6 +39,12 @@ class CategoryController extends Controller
         // $category->category_name = $request->category_name;
         // $category->user_id = Auth::user()->id,
         // $category->save();
+
+        // // using query builder:
+        // $data = array();
+        // $data['category_name'] = $request->category_name;
+        // $data['user_id'] = Auth::user()->id;
+        // DB::table('categories')->insert($data);
 
         // return with message
         return Redirect()->back()->with('success', 'Category inserted successfully!');
