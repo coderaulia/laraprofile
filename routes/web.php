@@ -37,15 +37,17 @@ Route::get('/contact', [ContactController::class, 'index'])->name('con');
 
 //category controller
 Route::get('/category/all', [CategoryController::class, 'AllCat'])->name('all.category');
+//Add category
+Route::post('/category/add', [CategoryController::class, 'AddCat'])->name('store.category');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
     // using user models eloquent orm
-    // $users = User::all();
+    $users = User::all();
 
     //using query builder
-    $users = DB::table('users')->get();
+    // $users = DB::table('users')->get();
 
     return view('dashboard', compact('users'));
 })->name('dashboard');
