@@ -39,7 +39,7 @@
                            <th scope="row">{{ $categories->firstItem()+$loop->index }}</th>
                            <td>{{ $category->category_name }}</td>
                            <td>{{ $category->user->name }}</td>
-                           <td>{{ $category->created_at->diffForHumans() }}</td>
+                           <td>{{ $category->created_at }}</td>
                            <td>
                               <a href="{{ url('category/edit/'.$category->id) }}" class="btn btn-info">Edit</a>
                               <a href="{{ url('softdelete/category/'.$category->id) }}" class="btn btn-danger">Delete</a>
@@ -105,7 +105,7 @@
                            <th scope="row">{{ $categories->firstItem()+$loop->index }}</th>
                            <td>{{ $category->category_name }}</td>
                            <td>{{ $category->user->name }}</td>
-                           <td>{{ $category->created_at->diffForHumans() }}</td>
+                           <td>{{ $category->created_at }}</td>
                            <td>
                               <a href="{{ url('category/restore/'.$category->id) }}" class="btn btn-info">Restore</a>
                               <a href="{{ url('pdelete/category/'.$category->id) }}" class="btn btn-danger">Delete!</a>

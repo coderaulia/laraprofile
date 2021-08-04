@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 // call controller name
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\BrandController;
 // call models
 use App\Models\User;
 
@@ -50,6 +51,11 @@ Route::get('pdelete/category/{id}', [CategoryController::class, 'PDelete']);
 Route::get('category/restore/{id}', [CategoryController::class, 'Restore']);
 //update category
 Route::post('/category/update/{id}', [CategoryController::class, 'Update']);
+
+// Brand Route
+Route::get('/brand/all', [BrandController::class, 'AllBrand'])->name('all.brand');
+Route::post('/brand/add', [BrandController::class, 'AddBrand'])->name('store.brand');
+
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
