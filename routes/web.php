@@ -44,6 +44,10 @@ Route::get('/category/all', [CategoryController::class, 'AllCat'])->name('all.ca
 Route::post('/category/add', [CategoryController::class, 'AddCat'])->name('store.category');
 //edit category
 Route::get('/category/edit/{id}', [CategoryController::class, 'Edit']);
+// delete category
+Route::get('softdelete/category/{id}', [CategoryController::class, 'SoftDelete']);
+Route::get('pdelete/category/{id}', [CategoryController::class, 'PDelete']);
+Route::get('category/restore/{id}', [CategoryController::class, 'Restore']);
 //update category
 Route::post('/category/update/{id}', [CategoryController::class, 'Update']);
 

@@ -39,10 +39,10 @@
                            <th scope="row">{{ $categories->firstItem()+$loop->index }}</th>
                            <td>{{ $category->category_name }}</td>
                            <td>{{ $category->user->name }}</td>
-                           <td>{{ \Carbon\Carbon::parse($category->created_at)->diffForHumans() }}</td>
+                           <td>{{ $category->created_at->diffForHumans() }}</td>
                            <td>
                               <a href="{{ url('category/edit/'.$category->id) }}" class="btn btn-info">Edit</a>
-                              <a href="{{ url('category/delete/'.$category->id) }}" class="btn btn-danger">Delete</a>
+                              <a href="{{ url('softdelete/category/'.$category->id) }}" class="btn btn-danger">Delete</a>
                            </td>
                         </tr>
                         @endforeach
@@ -71,6 +71,52 @@
                         <button type="submit" class="btn btn-primary">Add Category</button>
                      </form>
                   </div>
+               </div>
+            </div>
+
+         </div>
+      </div>
+   </div>
+   
+   {{-- Trash --}}
+   <div class="py-12">
+
+      <div class="container">
+         <div class="row">
+            <div class="col-md-8">
+               <div class="card">
+                  <div class="card-header">
+                     Trash Category
+                  </div>
+                  <table class="table">
+                     <thead>
+                        <tr>
+                           <th scope="col">No</th>
+                           <th scope="col">Category Name</th>
+                           <th scope="col">User</th>
+                           <th scope="col">Created at</th>
+                           <th scope="col">Action</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <!-- @php ($no = 1) -->
+                        @foreach($trashCat as $category)
+                        <tr>
+                           <th scope="row">{{ $categories->firstItem()+$loop->index }}</th>
+                           <td>{{ $category->category_name }}</td>
+                           <td>{{ $category->user->name }}</td>
+                           <td>{{ $category->created_at->diffForHumans() }}</td>
+                           <td>
+                              <a href="{{ url('category/restore/'.$category->id) }}" class="btn btn-info">Restore</a>
+                              <a href="{{ url('pdelete/category/'.$category->id) }}" class="btn btn-danger">Delete!</a>
+                           </td>
+                        </tr>
+                        @endforeach
+
+                     </tbody>
+                  </table>
+
+                  {{ $trashCat->links() }}
                </div>
             </div>
 
