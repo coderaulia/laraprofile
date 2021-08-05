@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Brand;
+use App\Models\Multipic;
 use Illuminate\Support\Carbon;
+use Image;
 
 class BrandController extends Controller
 {
@@ -26,14 +28,18 @@ class BrandController extends Controller
 
         $brand_image = $request->file('brand_image');
         //generate unique id
-        $name_gen = hexdec(uniqid());
+        $name_gen = hexdec(uniqid()).'.'.$brand_image->getClientOriginalExtension();
         // get image extension
-        $img_ext = strtolower($brand_image->getClientOriginalExtension());
-        //generated image
-        $img_name = $name_gen.'.'.$img_ext;
-        $up_location = 'image/brand/';
-        $last_img = $up_location.$img_name;
-        $brand_image->move($up_location, $img_name);
+        // $img_ext = strtolower($brand_image->getClientOriginalExtension());
+        // //generated image
+        // $img_name = $name_gen.'.'.$img_ext;
+        // $up_location = 'image/brand/';
+        // $last_img = $up_location.$img_name;
+        // $brand_image->move($up_location, $img_name);
+
+        Image::make($brand_image)->resize(300,200)->save('image/brand/'.$name_gen);
+
+        $last_img = 'image/brand/'.$name_gen;
 
         Brand::insert([
             'brand_name' => $request->brand_name,
@@ -106,6 +112,33 @@ class BrandController extends Controller
 
         $delete = Brand::find($id)->delete();
         return Redirect()->back()->with('success', 'Brand deleted successfully!');
+    }
+
+    public function Multipic(){
+        $images = Multipic::all();
+        return view('admin.multipic.index', compact('images'));
+    }
+
+    public function StoreImg(Request $request){
+
+        $images = $request->file('images');
+
+        foreach($images as $multi_img){
+            
+            //generate unique id
+            $name_gen = hexdec(uniqid()).'.'.$multi_img->getClientOriginalExtension();
+            
+            Image::make($multi_img)->resize(300,200)->save('image/multiple/'.$name_gen);
+            
+            $last_img = 'image/multiple/'.$name_gen;
+            
+            Multipic::insert([
+                'image' => $last_img,
+                'created_at' => Carbon::now()
+            ]);
+            
+        }
+        return Redirect()->back()->with('success', 'Image inserted successfully!');
     }
 
 
