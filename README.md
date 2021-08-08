@@ -37,6 +37,19 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 -   [x] Migrate database using `php artisan migrate`. (make sure you already install php-mysql on your machine).
 -   [x] Run `npm install && npm run dev`
 
+## Creating Email Verification system
+
+-   [x] Enable email verification on config/fortify.php
+-   [x] Adding `implements MustVerifyEmail` at User models (`models/User.php`) classes.
+-   [x] Adding the verification system routes on web routes (from Laravel Documentation).
+-   [x] Register and login to mailstrap.io, and then setting the env file with username and password.
+-   [x] Don't forget to setting the `.env` file. Emptying the app url, email's ports, username and password, fake sender emails.
+
+## Creating Admin Page Restriction
+
+-   [x] Adding construct function to the Controller.
+-   [x] Using Auth's Middleware.
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
