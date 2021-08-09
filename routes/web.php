@@ -72,10 +72,10 @@ Route::post('/multi/add', [BrandController::class, 'StoreImg'])->name('store.ima
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
     // using user models eloquent orm
-    $users = User::all();
+    // $users = User::all();
 
     //using query builder
     // $users = DB::table('users')->get();
 
-    return view('dashboard', compact('users'));
+    return view('admin.index');
 })->name('dashboard');
