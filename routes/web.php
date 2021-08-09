@@ -29,11 +29,7 @@ Route::get('/email/verify', function () {
 })->middleware('auth')->name('verification.notice');
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/home', function () {
-    echo "Homepage!";
+    return view('home');
 });
 
 Route::get('/about', function () {
