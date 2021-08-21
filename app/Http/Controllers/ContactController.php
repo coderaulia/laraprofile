@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contact;
-// use App\Models\ContactForm;
+use App\Models\ContactForm;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
