@@ -67,17 +67,16 @@
                     <ul class="collapse" id="ui-elements" data-parent="#sidebar-menu">
                         <div class="sub-menu">
 
-                            <li class="active">
-                                <a class="sidenav-item-link" href="">
-                                    <span class="nav-text">Contact Profile</span>
+                            <li class="active" >
+                                <a class="sidenav-item-link" href="{{ route('admin.contact') }}">
+                                  <span class="nav-text">Contact Profile</span>   
                                 </a>
-                            </li>
-                            <li class="active">
-                                <a class="sidenav-item-link" href="">
-                                    <span class="nav-text">Contact Message</span>
-
+                            </li> 
+                            <li class="active" >
+                                <a class="sidenav-item-link" href="{{ route('admin.message') }}">
+                                  <span class="nav-text">Contact Message</span>
                                 </a>
-                            </li>
+                            </li> 
 
                         </div>
                     </ul>
