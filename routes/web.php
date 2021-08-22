@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ChangePass;
 // call models
 use App\Models\Multipic;
 use App\Models\User;
@@ -112,3 +113,11 @@ Route::get('/admin/message', [ContactController::class, 'AdminMessage'])->name('
 /// Home Contact Page Route 
 Route::get('/contact', [ContactController::class, 'Contact'])->name('contact');
 Route::post('/contact/form', [ContactController::class, 'ContactForm'])->name('contact.form');
+
+
+Route::get('/user/password', [ChangePass::class, 'CPassword'])->name('change.password');
+Route::post('/password/update', [ChangePass::class, 'UpdatePassword'])->name('password.update');
+
+// User Profile 
+Route::get('/user/profile', [ChangePass::class, 'PUpdate'])->name('profile.update');
+Route::post('/user/profile/update', [ChangePass::class, 'UpdateProfile'])->name('update.user.profile');
